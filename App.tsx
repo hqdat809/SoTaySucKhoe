@@ -17,6 +17,7 @@ import SourceDetailScreen from "./screens/source-screen/SourceDetailScreen";
 import SourceScreen from "./screens/source-screen/SourceScreen";
 import { TRootState } from "./stores/reducers";
 import configureStore from "./stores/store";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 const Stack = createStackNavigator();
 const BottomTabs = createBottomTabNavigator();
@@ -141,10 +142,12 @@ function RootRouter() {
 
   return (
     <>
-      <StatusBar backgroundColor="royalblue" />
-      <NavigationContainer>
-        {userData ? <AuthenticatedStack /> : <AuthStack />}
-      </NavigationContainer>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <StatusBar backgroundColor="royalblue" />
+        <NavigationContainer>
+          {userData ? <AuthenticatedStack /> : <AuthStack />}
+        </NavigationContainer>
+      </GestureHandlerRootView>
     </>
   );
 }
