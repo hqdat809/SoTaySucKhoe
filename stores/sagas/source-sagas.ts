@@ -30,7 +30,7 @@ function* getSourceSaga({ payload, cb1 }: TGetSourceAction) {
     const response = yield call(getSourceBySubjectService, payload);
     yield put(getSourceSuccessAction(response));
     cb1?.();
-  } catch (error) {
+  } catch (error: any) {
     yield put(getSourceFailureAction(error));
     const errorCode = error.code;
     const errorMessage = error.message;
@@ -44,7 +44,7 @@ function* getAllSourceSaga({ cb1 }: TGetAllSourceAction) {
     const response = yield call(getAllSourceService);
     yield put(getAllSourceSuccessAction(response));
     cb1?.();
-  } catch (error) {
+  } catch (error: any) {
     yield put(getAllSourceFailureAction(error));
     const errorCode = error.code;
     const errorMessage = error.message;
@@ -57,7 +57,7 @@ function* searchSourceSaga({ payload }: TSearchSourceAction) {
     yield put(searchSourceRequestAction());
     const response = yield call(searchSourceService, payload);
     yield put(searchSourceSuccessAction(response));
-  } catch (error) {
+  } catch (error: any) {
     yield put(searchSourceFailureAction(error));
     const errorCode = error.code;
     const errorMessage = error.message;

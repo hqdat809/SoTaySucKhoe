@@ -27,7 +27,7 @@ const { height, width } = Dimensions.get("window");
 const markdownStyles: any = {
   body: {
     fontSize: 16,
-    fontFamily: "Comfortaa-Bold",
+    // fontFamily: "Comfortaa-Bold",
     wordSpacing: 2,
     lineHeight: 24,
   },

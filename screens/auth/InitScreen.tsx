@@ -4,7 +4,7 @@ import { Dimensions, ImageBackground, StyleSheet, View } from "react-native";
 import ButtonComponent from "../../components/button/ButtonComponent";
 import Text from "../../components/text/Text";
 
-const image = { uri: "../../" };
+const image = { uri: "." };
 
 const { height } = Dimensions.get("window");
 
@@ -13,17 +13,17 @@ interface IProps {
 }
 
 const InitScreen = ({ navigation }: IProps) => {
-  const [fontsLoaded] = useFonts({
-    // "SourceCodePro-LightIt": require("./assets/fonts/SourceCodePro-LightIt.otf"),
-  });
-
   const handleNavigateLoginPage = () => {
     navigation.navigate("Login");
   };
 
   return (
     <View style={styles.container}>
-      <ImageBackground resizeMode="cover" style={styles.image}>
+      <ImageBackground
+        source={require("../../assets/images/BackgroundInitPage.jpg")}
+        resizeMode="cover"
+        style={styles.image}
+      >
         <Text style={styles.text}>Sổ Tay Dinh Dưỡng</Text>
       </ImageBackground>
       <View style={styles.actions}>

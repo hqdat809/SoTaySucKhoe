@@ -18,13 +18,19 @@ import SourceScreen from "./screens/source-screen/SourceScreen";
 import { TRootState } from "./stores/reducers";
 import configureStore from "./stores/store";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import OnboardingScreen from "./screens/onboarding/OnboardingScreen";
 
 const Stack = createStackNavigator();
 const BottomTabs = createBottomTabNavigator();
 
 function AuthStack() {
   return (
-    <Stack.Navigator initialRouteName="Init">
+    <Stack.Navigator initialRouteName="Onboarding">
+      <Stack.Screen
+        name="Onboarding"
+        component={OnboardingScreen}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen
         name="Init"
         component={InitScreen}
@@ -37,6 +43,8 @@ function AuthStack() {
           headerTitle: "Đăng nhập",
           headerTitleAlign: "center",
           headerTitleStyle: styles.title,
+          headerStyle: styles.header,
+          headerTintColor: "#fff",
         }}
       />
     </Stack.Navigator>
@@ -60,7 +68,6 @@ function HomeStack() {
           headerShown: false,
         }}
       />
-
       <Stack.Screen
         name="SourceDetails"
         component={SourceDetailScreen}
@@ -68,7 +75,6 @@ function HomeStack() {
           headerShown: false,
         }}
       />
-
       <Stack.Screen
         name="Search"
         component={SearchScreen}
@@ -84,9 +90,9 @@ const AppStack = () => {
   const screenOptionsFunction = ({ route }: any) => ({
     tabBarIcon: ({ focused, color, size }: any) => {
       let iconName;
-      if (route.name === "Home") {
+      if (route.name === "Trang Chủ") {
         iconName = "home";
-      } else if (route.name === "Profile") {
+      } else if (route.name === "Cá nhân") {
         iconName = "person";
       }
 
@@ -106,14 +112,14 @@ const AppStack = () => {
   return (
     <BottomTabs.Navigator screenOptions={screenOptionsFunction}>
       <BottomTabs.Screen
-        name="Home"
+        name="Trang Chủ"
         component={HomeStack}
         options={{
           headerShown: false,
         }}
       />
       <BottomTabs.Screen
-        name="Profile"
+        name="Cá nhân"
         component={ProfileScreen}
         options={{
           headerShown: false,
@@ -177,9 +183,16 @@ const styles = StyleSheet.create({
   app: {
     padding: 10,
   },
+  header: {
+    backgroundColor: "#4169e1",
+  },
+  headerBack: {
+    color: "#fff",
+  },
   title: {
     fontSize: 22,
-    fontFamily: "Comfortaa-Bold",
+    color: "#fff",
+    // fontFamily: "Comfortaa-Bold",
     fontWeight: "bold",
     textAlign: "center",
   },

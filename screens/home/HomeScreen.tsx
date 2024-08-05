@@ -54,7 +54,11 @@ const HomeScreen = ({ navigation }: IProps) => {
   };
 
   const handleLogout = () => {
-    dispatch(logOutAction());
+    dispatch(
+      logOutAction(() => {
+        navigation.navigate("Login");
+      })
+    );
   };
 
   const handleGetSubject = () => {
@@ -179,7 +183,9 @@ const HomeScreen = ({ navigation }: IProps) => {
           />
         </View>
         <View style={{ marginTop: 18 }}>
-          <Text style={{ fontWeight: "bold", fontSize: 20 }}>Phổ biến</Text>
+          <Text style={{ fontWeight: "bold", fontSize: 20 }}>
+            Câu hỏi thường gặp
+          </Text>
           <View>
             <FlatList
               data={popularSource}

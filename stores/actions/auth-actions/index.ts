@@ -25,9 +25,7 @@ export const signInFailureAction = (error: any) => ({
   payload: error,
 });
 
-export const logOutAction = (
-  cb1?: (currentUser: any) => void
-): TLogOutAction => ({
+export const logOutAction = (cb1?: () => void): TLogOutAction => ({
   type: EAuthActions.LOG_OUT,
   cb1,
 });

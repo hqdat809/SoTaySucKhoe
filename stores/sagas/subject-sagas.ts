@@ -17,7 +17,7 @@ function* getSubjectSaga({ cb1 }: TGetSubjectAction) {
     const response = yield call(getSubjectService);
     yield put(getSubjectSuccessAction(response));
     cb1?.();
-  } catch (error) {
+  } catch (error: any) {
     yield put(getSubjectFailureAction(error));
     const errorCode = error.code;
     const errorMessage = error.message;

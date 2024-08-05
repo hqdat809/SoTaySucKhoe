@@ -12,5 +12,5 @@ export type TSignInAction = {
 
 export type TLogOutAction = {
   type: EAuthActions.LOG_OUT;
-  cb1?: (currentUser: any) => void;
+  cb1?: () => void;
 };

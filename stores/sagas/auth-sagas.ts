@@ -19,7 +19,7 @@ function* signInSaga({ payload, cb1 }: TSignInAction) {
     const response = yield call(signInService, payload);
     yield put(signInSuccessAction(response));
     cb1?.(response);
-  } catch (error) {
+  } catch (error: any) {
     yield put(signInFailureAction(error));
     const errorCode = error.code;
     const errorMessage = error.message;
@@ -60,7 +60,8 @@ function* logOutSaga({ cb1 }: TLogOutAction) {
     yield put(logOutRequestAction());
     yield call(logOutService);
     yield put(logOutSuccessAction());
-  } catch (error) {
+    cb1?.();
+  } catch (error: any) {
     yield put(logOutFailureAction(error));
     const errorMessage = error.message;
     Alert.alert("Error", errorMessage);

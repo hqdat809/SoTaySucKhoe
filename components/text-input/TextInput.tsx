@@ -14,5 +14,7 @@ const TextInput = ({ style, ...props }: IProps) => {
 export default TextInput;
 
 const styles = StyleSheet.create({
-  textInput: { fontFamily: "Comfortaa-Bold" },
+  textInput: {
+    // fontFamily: "Comfortaa-Bold"
+  },
 });

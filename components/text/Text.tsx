@@ -11,6 +11,6 @@ export default Text;
 
 const styles = StyleSheet.create({
   text: {
-    fontFamily: "Comfortaa-Bold", // Replace with your custom font name
+    // fontFamily: "Comfortaa-Bold",
   },
 });

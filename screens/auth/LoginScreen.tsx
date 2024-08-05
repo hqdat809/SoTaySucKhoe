@@ -102,7 +102,8 @@ const styles = StyleSheet.create({
     display: "flex",
   },
   button: {
-    backgroundColor: "#000",
+    backgroundColor: "#4169e1",
+    borderColor: "#4169e1",
   },
   buttonText: {
     color: "#fff",
@@ -110,7 +111,7 @@ const styles = StyleSheet.create({
   },
   input: {
     width: "100%",
-    borderColor: "#000",
+    borderColor: "#4169e1",
     borderWidth: 2,
     paddingHorizontal: 18,
     paddingVertical: 12,
