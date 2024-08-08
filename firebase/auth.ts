@@ -1,5 +1,10 @@
 // import auth from "@react-native-firebase/auth";
-import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  signOut,
+  updatePassword,
+} from "firebase/auth";
 import { app, auth } from "./firebaseConfig";
 
 export const doSignInWithEmailAndPassword = async (payload: any) => {
@@ -12,6 +17,22 @@ export const doSignInWithEmailAndPassword = async (payload: any) => {
     return userCredential.user;
   } catch (error) {
     throw error;
+  }
+};
+
+export const doUpdatePassword = async (password: string) => {
+  const auth = getAuth();
+
+  const user = auth.currentUser;
+  const newPassword = password;
+  if (user) {
+    await updatePassword(user, newPassword)
+      .then(() => {
+        console.log("User updated successfully");
+      })
+      .catch((error) => {
+        console.log("Error updating password", error);
+      });
   }
 };
 

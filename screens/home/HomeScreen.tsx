@@ -5,6 +5,7 @@ import {
   FlatList,
   Platform,
   StyleSheet,
+  Touchable,
   TouchableOpacity,
   View,
 } from "react-native";
@@ -53,6 +54,10 @@ const HomeScreen = ({ navigation }: IProps) => {
     return <PopularItem key={item.id} item={item} subject={subjectOfItem} />;
   };
 
+  const handleNavigateProfile = () => {
+    navigation.navigate("Profile");
+  };
+
   const handleLogout = () => {
     dispatch(
       logOutAction(() => {
@@ -72,6 +77,7 @@ const HomeScreen = ({ navigation }: IProps) => {
   useEffect(() => {
     handleGetSubject();
     handleGetAllSource();
+    console.log("userData: ", userData?.uid);
   }, []);
 
   const handleClickSubject = (subject: any) => {
@@ -120,7 +126,9 @@ const HomeScreen = ({ navigation }: IProps) => {
       <View style={styles.header}>
         <View style={styles.headerWelcome}>
           <View>
-            <Text style={styles.welcomeText}>Chào mừng, admin</Text>
+            <Text style={styles.welcomeText}>
+              Chào mừng, {userData?.username}
+            </Text>
             <Text style={styles.wishText}>Keep Health!</Text>
           </View>
           <View>
@@ -150,27 +158,29 @@ const HomeScreen = ({ navigation }: IProps) => {
       {/* Content */}
       <View style={styles.content}>
         <View style={styles.infoBox}>
-          <View style={{ flexDirection: "row", gap: 14 }}>
+          <TouchableOpacity
+            style={{ flexDirection: "row", gap: 14 }}
+            onPress={() => handleNavigateProfile()}
+          >
             <Avatar
               size={60}
-              title="A"
+              title={userData?.username.split("")[0].toUpperCase()}
               containerStyle={{ backgroundColor: "#9780b9" }}
             />
             <View style={{ flex: 1 }}>
               <Text style={{ color: "#fff", fontSize: 20, fontWeight: "bold" }}>
-                Admin
+                {userData?.username}
               </Text>
               <View style={{ flexDirection: "row", gap: 50 }}>
-                <Text style={{ color: "#fff", fontSize: 14 }}>Tuổi: 30</Text>
                 <Text style={{ color: "#fff", fontSize: 14 }}>
-                  Sức khỏe: ổn
+                  {userData?.email}
                 </Text>
               </View>
             </View>
             <View style={{ justifyContent: "center" }}>
               <Icon name="chevron-forward-outline" color="white" size={30} />
             </View>
-          </View>
+          </TouchableOpacity>
         </View>
         <View style={{ marginTop: 18 }}>
           <Text style={{ fontWeight: "bold", fontSize: 20 }}>Chủ đề</Text>

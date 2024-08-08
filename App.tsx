@@ -19,6 +19,7 @@ import { TRootState } from "./stores/reducers";
 import configureStore from "./stores/store";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import OnboardingScreen from "./screens/onboarding/OnboardingScreen";
+import ChangePasswordScreen from "./screens/change-password/ChangePasswordScreen";
 
 const Stack = createStackNavigator();
 const BottomTabs = createBottomTabNavigator();
@@ -90,9 +91,9 @@ const AppStack = () => {
   const screenOptionsFunction = ({ route }: any) => ({
     tabBarIcon: ({ focused, color, size }: any) => {
       let iconName;
-      if (route.name === "Trang Chủ") {
+      if (route.name === "Home") {
         iconName = "home";
-      } else if (route.name === "Cá nhân") {
+      } else if (route.name === "Profile") {
         iconName = "person";
       }
 
@@ -112,17 +113,18 @@ const AppStack = () => {
   return (
     <BottomTabs.Navigator screenOptions={screenOptionsFunction}>
       <BottomTabs.Screen
-        name="Trang Chủ"
+        name="Home"
         component={HomeStack}
         options={{
           headerShown: false,
         }}
       />
       <BottomTabs.Screen
-        name="Cá nhân"
+        name="Profile"
         component={ProfileScreen}
         options={{
           headerShown: false,
+          headerTitle: "Profile",
         }}
       />
     </BottomTabs.Navigator>
@@ -137,6 +139,17 @@ function AuthenticatedStack() {
         component={AppStack}
         options={{
           headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="ChangePassword"
+        component={ChangePasswordScreen}
+        options={{
+          headerTitle: "Đổi mật khẩu",
+          headerTitleAlign: "center",
+          headerTitleStyle: styles.title,
+          headerStyle: styles.header,
+          headerTintColor: "#fff",
         }}
       />
     </Stack.Navigator>

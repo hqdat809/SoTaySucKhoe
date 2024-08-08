@@ -1,8 +1,12 @@
+import { changePasswordService } from "./../../services/auth-services";
 import { logOutService, signInService } from "../../services/auth-services";
 // import { toastError } from "../../utils/notifications-utils";
 import { Alert } from "react-native";
 import { all, call, fork, put, takeLatest } from "redux-saga/effects";
 import {
+  changePasswordFailureAction,
+  changePasswordRequestAction,
+  changePasswordSuccessAction,
   logOutFailureAction,
   logOutRequestAction,
   logOutSuccessAction,
@@ -11,7 +15,11 @@ import {
   signInSuccessAction,
 } from "../actions/auth-actions";
 import { EAuthActions } from "../actions/auth-actions/constants";
-import { TLogOutAction, TSignInAction } from "../actions/auth-actions/types";
+import {
+  TChangePasswordAction,
+  TLogOutAction,
+  TSignInAction,
+} from "../actions/auth-actions/types";
 
 function* signInSaga({ payload, cb1 }: TSignInAction) {
   try {
@@ -68,9 +76,24 @@ function* logOutSaga({ cb1 }: TLogOutAction) {
   }
 }
 
+function* changePasswordSaga({ cb1, payload }: TChangePasswordAction) {
+  try {
+    yield put(changePasswordRequestAction());
+    yield call(changePasswordService, payload);
+    yield put(changePasswordSuccessAction());
+    Alert.alert("Success", "Update success");
+    cb1?.();
+  } catch (error: any) {
+    yield put(changePasswordFailureAction(error));
+    const errorMessage = error.message;
+    Alert.alert("Error", errorMessage);
+  }
+}
+
 function* watchOnAuth() {
   yield takeLatest(EAuthActions.SIGN_IN, signInSaga);
   yield takeLatest(EAuthActions.LOG_OUT, logOutSaga);
+  yield takeLatest(EAuthActions.CHANGE_PASSWORD, changePasswordSaga);
 }
 
 export default function* authSaga() {

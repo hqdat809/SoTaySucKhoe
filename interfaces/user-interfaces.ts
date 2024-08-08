@@ -10,6 +10,11 @@ export type TSignInRequest = {
   password: string;
 };
 
+export type TChangePasswordRequest = {
+  uid: string;
+  newPassword: string;
+};
+
 export type TSignInResponse = {
   userData: IUserData;
 };
@@ -42,11 +47,6 @@ export type TUpdateUserRequest = {
   expiration: number | string | Date;
 };
 
-export type TChangePasswordRequest = {
-  id?: number;
-  password: string;
-};
-
 export type TTransferEquipment = {
   userId: number;
   equipmentIds: number[];
@@ -70,6 +70,7 @@ export interface IUserData {
   authorities: Authority[];
   credentialsNonExpired: boolean;
   accountNonExpired: boolean;
+  uid: string;
 }
 
 export interface Authority {

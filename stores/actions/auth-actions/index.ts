@@ -1,6 +1,6 @@
 import { TSignInRequest } from "../../../interfaces/user-interfaces";
 import { EAuthActions } from "./constants";
-import { TLogOutAction, TSignInAction } from "./types";
+import { TChangePasswordAction, TLogOutAction, TSignInAction } from "./types";
 
 export const signInAction = (
   payload: TSignInRequest,
@@ -40,5 +40,27 @@ export const logOutSuccessAction = () => ({
 
 export const logOutFailureAction = (error: any) => ({
   type: EAuthActions.LOG_OUT_FAILURE,
+  payload: error,
+});
+
+export const changePasswordAction = (
+  payload: string,
+  cb1?: () => void
+): TChangePasswordAction => ({
+  type: EAuthActions.CHANGE_PASSWORD,
+  payload,
+  cb1,
+});
+
+export const changePasswordRequestAction = () => ({
+  type: EAuthActions.CHANGE_PASSWORD_REQUEST,
+});
+
+export const changePasswordSuccessAction = () => ({
+  type: EAuthActions.CHANGE_PASSWORD_SUCCESS,
+});
+
+export const changePasswordFailureAction = (error: any) => ({
+  type: EAuthActions.CHANGE_PASSWORD_FAILURE,
   payload: error,
 });

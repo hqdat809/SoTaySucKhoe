@@ -14,3 +14,9 @@ export type TLogOutAction = {
   type: EAuthActions.LOG_OUT;
   cb1?: () => void;
 };
+
+export type TChangePasswordAction = {
+  type: EAuthActions.CHANGE_PASSWORD;
+  payload: string;
+  cb1?: () => void;
+};

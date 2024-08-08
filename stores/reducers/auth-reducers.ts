@@ -14,11 +14,14 @@ const authReducer = (
   action: { type: string; payload: any }
 ): TAuthState => {
   switch (action.type) {
-    case EAuthActions.SIGN_IN_SUCCESS:
+    case EAuthActions.SIGN_IN_SUCCESS: {
+      const username = action.payload.email.split("@")[0];
+
       return {
         ...state,
-        userData: action.payload,
+        userData: { ...action.payload, username },
       };
+    }
     case EAuthActions.LOG_OUT_SUCCESS:
       return {
         ...state,
