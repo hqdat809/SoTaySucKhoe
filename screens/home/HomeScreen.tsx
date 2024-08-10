@@ -1,6 +1,7 @@
 import { Avatar, Dialog } from "@rneui/themed";
 import React, { useEffect, useState } from "react";
 import {
+  Button,
   Dimensions,
   FlatList,
   Platform,
@@ -213,11 +214,10 @@ const HomeScreen = ({ navigation }: IProps) => {
       >
         <Dialog.Title title="Bạn có muốn đăng xuất?" />
         <Dialog.Actions>
-          <Dialog.Button title="Đăng xuất" onPress={handleLogout} />
-          <Dialog.Button
-            title="Hủy"
-            onPress={() => setLogOutModal(!logOutModal)}
-          />
+          <View style={{ display: "flex", gap: 10, flexDirection: "row" }}>
+            <Button title="Hủy" onPress={() => setLogOutModal(!logOutModal)} />
+            <Button title="Đăng xuất" onPress={handleLogout} />
+          </View>
         </Dialog.Actions>
       </Dialog>
     </ScrollView>

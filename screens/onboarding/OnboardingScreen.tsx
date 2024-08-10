@@ -1,5 +1,13 @@
 import React from "react";
-import { Dimensions, Image, StyleSheet } from "react-native";
+import {
+  Button,
+  Dimensions,
+  Image,
+  StyleSheet,
+  Text,
+  Touchable,
+  TouchableOpacity,
+} from "react-native";
 import Onboarding from "react-native-onboarding-swiper";
 interface IProps {
   navigation: any;
@@ -13,6 +21,21 @@ const OnboardingScreen = ({ navigation }: IProps) => {
     <Onboarding
       onDone={handleDoneAndSkip}
       onSkip={handleDoneAndSkip}
+      SkipButtonComponent={(e) => (
+        <TouchableOpacity {...e}>
+          <Text>Bỏ qua</Text>
+        </TouchableOpacity>
+      )}
+      NextButtonComponent={(e) => (
+        <TouchableOpacity {...e}>
+          <Text>Tiếp tục</Text>
+        </TouchableOpacity>
+      )}
+      DoneButtonComponent={(e) => (
+        <TouchableOpacity {...e} onPress={handleDoneAndSkip}>
+          <Text>Hoàn thành</Text>
+        </TouchableOpacity>
+      )}
       pages={[
         {
           backgroundColor: "#a6e4d0",

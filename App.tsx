@@ -20,6 +20,7 @@ import configureStore from "./stores/store";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import OnboardingScreen from "./screens/onboarding/OnboardingScreen";
 import ChangePasswordScreen from "./screens/change-password/ChangePasswordScreen";
+import { usePreventScreenCapture } from "expo-screen-capture";
 
 const Stack = createStackNavigator();
 const BottomTabs = createBottomTabNavigator();
@@ -88,6 +89,8 @@ function HomeStack() {
 }
 
 const AppStack = () => {
+  usePreventScreenCapture();
+
   const screenOptionsFunction = ({ route }: any) => ({
     tabBarIcon: ({ focused, color, size }: any) => {
       let iconName;
